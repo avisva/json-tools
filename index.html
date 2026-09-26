@@ -8,20 +8,20 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Format, beautify, validate, and build JSON online for free. Use this fast browser-based JSON formatter and validator to create and check clean JSON instantly.">
+  <meta name="description" content="Free online JSON formatter, validator, builder, and minifier. Compare JSON, convert it to XML, CSV, or YAML, and explore data in a searchable tree viewer.">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="theme-color" content="#0c7c86">
   <link rel="canonical" href="https://json-tools.enviz.in/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="JSON Tools">
-  <meta property="og:title" content="Free Online JSON Formatter, Validator &amp; Builder">
-  <meta property="og:description" content="Format, beautify, validate, and build JSON online for free with a fast browser-based JSON tool.">
+  <meta property="og:title" content="JSON Formatter, Validator &amp; Compare Tool | JSON Tools">
+  <meta property="og:description" content="Free online JSON formatter, validator, builder, and minifier. Compare JSON, convert it to XML, CSV, or YAML, and explore data in a searchable tree viewer.">
   <meta property="og:url" content="https://json-tools.enviz.in/">
   <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Free Online JSON Formatter, Validator &amp; Builder">
-  <meta name="twitter:description" content="Format, beautify, validate, and build JSON online for free with a fast browser-based JSON tool.">
-  <title>Free Online JSON Formatter, Validator &amp; Builder | JSON Tools</title>
+  <meta name="twitter:title" content="JSON Formatter, Validator &amp; Compare Tool | JSON Tools">
+  <meta name="twitter:description" content="Free online JSON formatter, validator, builder, and minifier. Compare JSON, convert it to XML, CSV, or YAML, and explore data in a searchable tree viewer.">
+  <title>JSON Formatter, Validator &amp; Compare Tool | JSON Tools</title>
    <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
   <link rel="preload" href="favicon.png" as="image">
@@ -31,7 +31,7 @@
       "@context": "https://schema.org",
       "@type": "WebApplication",
       "name": "JSON Tools",
-      "description": "Free online JSON formatter, beautifier, validator, builder, and generator.",
+      "description": "Free online JSON formatter, validator, builder, comparison tool, minifier, XML/CSV/YAML converter, and tree viewer.",
       "url": "https://json-tools.enviz.in/",
       "inLanguage": "en",
       "isAccessibleForFree": true,
@@ -47,6 +47,10 @@
         "Format and beautify JSON",
         "Build and generate simple, array, and complex JSON",
         "Validate JSON syntax",
+        "Compare JSON values and locate differences",
+        "Minify JSON to reduce payload size",
+        "Convert JSON to and from XML, CSV, and YAML",
+        "Browse JSON in a searchable, expandable tree",
         "Copy and save JSON output"
       ]
     }
@@ -87,23 +91,34 @@
     header.shrink h1 { font-size:1.1rem; }
     header.shrink p { font-size:0; opacity:0; margin:0; }
     nav {
-      position: fixed; top:48px; left:0; right:0; height:34px;
-      display:flex; justify-content:center; gap:3px; padding:2px 8px;
-      background:rgba(250,255,254,0.96); border-bottom:1px solid var(--line);
+      position: fixed; top:48px; left:0; right:0; height:76px;
+      display:grid; grid-template-columns:repeat(5, minmax(0, 1fr)); grid-auto-rows:32px;
+      align-content:center; justify-content:center; gap:4px 6px; padding:4px 12px;
+      background:rgba(250,255,254,0.97); border-bottom:1px solid var(--line);
+      box-shadow:0 3px 12px rgba(23,52,59,0.08); backdrop-filter:blur(10px);
       z-index:999;
     }
     body.compact-header nav { top:40px; }
     nav button {
-      flex:1; max-width:240px; padding:4px 8px; border:1px solid transparent; border-radius:5px;
-      background:transparent; color:var(--muted); cursor:pointer;
-      font:600 0.76rem 'Segoe UI', Tahoma, sans-serif; transition:background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+      flex:1; max-width:240px; min-height:32px; padding:5px 10px; border:1px solid #c6dcda; border-radius:6px;
+      background:#e5f0ee; color:var(--teal-dark); cursor:pointer; white-space:nowrap;
+      font:600 0.76rem 'Segoe UI', Tahoma, sans-serif; transition:background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s;
     }
-    nav button:hover { background:#e3f0ee; color:var(--ink); border-color:#c5e0df; transform:translateY(-1px); }
-    nav button.active { background:linear-gradient(135deg, #1599a0, var(--teal)); color:white; border-color:var(--teal); box-shadow:0 3px 9px rgba(12,124,134,0.25); }
+    nav button::before {
+      content:""; display:inline-block; width:6px; height:6px; margin:0 7px 1px 0;
+      border-radius:50%; background:#9bb9b7; vertical-align:middle; transition:background 0.2s, box-shadow 0.2s;
+    }
+    nav button:hover { background:#d4e8e5; color:var(--ink); border-color:#9fc9c6; transform:translateY(-1px); }
+    nav button.active {
+      background:linear-gradient(135deg, #1599a0, var(--teal)); color:white; border-color:var(--teal);
+      box-shadow:0 3px 9px rgba(12,124,134,0.25), inset 0 1px rgba(255,255,255,0.2);
+    }
+    nav button.active::before { background:#d5ffef; box-shadow:0 0 7px rgba(213,255,239,0.9); }
+    nav button:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
     main {
-      width:100%; max-width:1120px; margin:0 auto; padding:114px 24px 64px;
+      width:100%; max-width:1120px; margin:0 auto; padding:156px 24px 64px;
     }
-    body.compact-header main { padding-top:106px; }
+    body.compact-header main { padding-top:148px; }
     footer {
       position:fixed; right:0; bottom:0; left:0; z-index:998;
       min-height:26px; display:flex; align-items:center; justify-content:center;
@@ -125,6 +140,9 @@
     .section-heading h2 { margin:0 0 4px; color:var(--teal-dark); font-size:1.25rem; font-weight:700; }
     .section-heading p { margin:0; color:var(--muted); font-size:0.9rem; }
     .tool-layout { display:grid; grid-template-columns:minmax(0, 1fr) minmax(0, 1fr); gap:18px; }
+    .converter-direction { max-width:320px; margin-bottom:4px; }
+    .converter-layout textarea, .converter-layout .output { height:280px; min-height:280px; max-height:280px; }
+    .converter-layout textarea { resize:none; }
     .panel {
       min-width:0; padding:18px; background:var(--panel); border:1px solid var(--line);
       border-radius:10px; box-shadow:0 8px 24px rgba(22,47,66,0.07);
@@ -156,6 +174,15 @@
       min-height:280px; margin:0; padding:14px; overflow:auto; white-space:pre-wrap;
       background:#102d35; color:#d8f0e9; border-radius:8px; font:400 0.9rem/1.6 'Space Mono', monospace;
     }
+    .tree-output { min-height:280px; max-height:620px; overflow:auto; padding:12px; background:#fbfdfc; border:1px solid var(--line); border-radius:8px; }
+    .tree-output ul { margin:4px 0 4px 18px; padding-left:14px; border-left:1px solid var(--line); list-style:none; }
+    .tree-output li { margin:3px 0; font:0.82rem/1.5 'Space Mono', monospace; }
+    .tree-output summary { cursor:pointer; color:var(--teal-dark); }
+    .tree-key { color:#07545d; font-weight:700; }
+    .tree-value { color:#344f54; white-space:pre-wrap; overflow-wrap:anywhere; }
+    .tree-output mark { background:#f4d76a; color:#17343b; border-radius:2px; }
+    .tool-note { margin:0 0 12px; color:var(--muted); font-size:0.78rem; line-height:1.45; }
+    .tool-stats { margin:10px 0 0; color:var(--muted); font-size:0.78rem; }
     button.action {
       min-height:38px; background:linear-gradient(135deg, #1599a0, var(--teal)); color:white;
       border:1px solid var(--teal-dark); padding:9px 18px; border-radius:7px; cursor:pointer;
@@ -201,26 +228,37 @@
     @keyframes appear { from { opacity:0; transform:translateY(5px); } to { opacity:1; transform:none; } }
     @media (max-width:700px) {
       main { padding:168px 14px 36px; }
-      nav button { font-size:0.7rem; padding:4px 5px; }
+      nav { display:flex; height:42px; grid-template-columns:none; grid-auto-rows:auto; flex-wrap:nowrap; justify-content:flex-start; overflow-x:auto; overscroll-behavior-x:contain; scrollbar-width:none; }
+      nav::-webkit-scrollbar { display:none; }
+      nav button { flex:0 0 auto; min-width:124px; font-size:0.7rem; padding:4px 8px; }
       .tool-layout { grid-template-columns:1fr; }
       textarea, .output { min-height:280px; }
     }
     @media (min-width:701px) and (max-width:900px) {
-      main { padding-left:16px; padding-right:16px; }
+      nav { height:112px; grid-template-columns:repeat(3, minmax(0, 1fr)); }
+      nav button { max-width:none; }
+      main { padding:192px 16px 64px; }
+      body.compact-header main { padding-top:184px; }
       .tool-layout { grid-template-columns:1fr; }
     }
   </style>
 </head>
 <body>
   <header id="header">
-    <h1>JSON Formatter &amp; Validator</h1>
-    <p>Formatter • Builder • Validator</p>
+    <h1>JSON Tools</h1>
+    <p>Format • Build • Validate • Compare • Minify • Convert • Explore</p>
   </header>
 
   <nav>
     <button class="active" data-tab="formatter">JSON Formatter</button>
     <button data-tab="creator">JSON Builder</button>
     <button data-tab="validator">JSON Validator</button>
+    <button data-tab="compare">JSON Compare</button>
+    <button data-tab="minifier">JSON Minifier</button>
+    <button data-tab="xml">JSON ↔ XML</button>
+    <button data-tab="csv">JSON ↔ CSV</button>
+    <button data-tab="yaml">JSON ↔ YAML</button>
+    <button data-tab="tree">JSON Tree Viewer</button>
   </nav>
 
   <main>
@@ -346,11 +384,143 @@
         </div>
       </div>
     </section>
+
+    <!-- Comparator -->
+    <section id="compare" style="display:none;">
+      <div class="section-heading"><h2>Compare JSON</h2><p>Compare two JSON values and find exactly where they differ.</p></div>
+      <div class="tool-layout">
+        <div class="panel">
+          <div class="panel-header">
+            <label for="compareInputA">First JSON</label>
+            <div class="panel-actions">
+              <button class="panel-action" id="clearCompareInputABtn" type="button">Clear</button>
+            </div>
+          </div>
+          <textarea id="compareInputA" placeholder="Paste the first JSON here..."></textarea>
+        </div>
+        <div class="panel">
+          <div class="panel-header">
+            <label for="compareInputB">Second JSON</label>
+            <div class="panel-actions">
+              <button class="panel-action" id="clearCompareInputBBtn" type="button">Clear</button>
+            </div>
+          </div>
+          <textarea id="compareInputB" placeholder="Paste the second JSON here..."></textarea>
+        </div>
+      </div>
+      <button class="action" id="compareBtn" type="button" style="margin:14px 0;">Compare JSON</button>
+      <div class="panel">
+        <div class="panel-header">
+          <label for="compareOutput">Comparison result</label>
+          <div class="panel-actions">
+            <button class="panel-action" id="clearCompareOutputBtn" type="button">Clear</button>
+            <button class="panel-action" id="copyCompareOutputBtn" type="button">Copy</button>
+          </div>
+        </div>
+        <pre class="output" id="compareOutput" aria-live="polite"></pre>
+      </div>
+    </section>
+
+    <!-- Minifier -->
+    <section id="minifier" style="display:none;">
+      <div class="section-heading"><h2>JSON Minifier</h2><p>Remove unnecessary whitespace to reduce JSON payload size.</p></div>
+      <div class="tool-layout">
+        <div class="panel">
+          <div class="panel-header"><label for="minifyInput">JSON input</label><div class="panel-actions"><button class="panel-action" id="clearMinifyInputBtn" type="button">Clear</button></div></div>
+          <textarea id="minifyInput" placeholder="Paste JSON to minify..."></textarea>
+        </div>
+        <div class="panel">
+          <div class="panel-header"><label for="minifyOutput">Minified JSON</label><div class="panel-actions"><button class="panel-action" id="clearMinifyOutputBtn" type="button">Clear</button><button class="panel-action" id="copyMinifyOutputBtn" type="button">Copy</button></div></div>
+          <pre class="output" id="minifyOutput" aria-live="polite"></pre>
+          <p class="tool-stats" id="minifyStats" aria-live="polite"></p>
+        </div>
+      </div>
+      <button class="action" id="minifyBtn" type="button" style="margin-top:14px;">Minify JSON</button>
+    </section>
+
+    <!-- XML converter -->
+    <section id="xml" style="display:none;">
+      <div class="section-heading"><h2>JSON ↔ XML Converter</h2><p>Convert JSON to XML or parse XML into JSON. Arrays use repeated item elements and XML attributes map to @attributes.</p></div>
+      <div class="converter-direction">
+        <label class="builder-label" for="xmlDirection">Conversion direction</label>
+        <select class="builder-select" id="xmlDirection"><option value="json-xml">JSON to XML</option><option value="xml-json">XML to JSON</option></select>
+      </div>
+      <div class="tool-layout converter-layout">
+        <div class="panel">
+          <div class="panel-header"><label for="xmlInput">Input</label><div class="panel-actions"><button class="panel-action" id="clearXmlInputBtn" type="button">Clear</button></div></div>
+          <textarea id="xmlInput" placeholder="Paste JSON here..."></textarea>
+        </div>
+        <div class="panel">
+          <div class="panel-header"><label for="xmlOutput">Converted output</label><div class="panel-actions"><button class="panel-action" id="clearXmlOutputBtn" type="button">Clear</button><button class="panel-action" id="copyXmlOutputBtn" type="button">Copy</button></div></div>
+          <pre class="output" id="xmlOutput" aria-live="polite"></pre>
+        </div>
+      </div>
+      <button class="action" id="convertXmlBtn" type="button" style="margin-top:14px;">Convert</button>
+    </section>
+
+    <!-- CSV converter -->
+    <section id="csv" style="display:none;">
+      <div class="section-heading"><h2>JSON ↔ CSV Converter</h2><p>Convert arrays of JSON objects to spreadsheet-ready CSV, or turn CSV rows into JSON records.</p></div>
+      <div class="converter-direction">
+        <label class="builder-label" for="csvDirection">Conversion direction</label>
+        <select class="builder-select" id="csvDirection"><option value="json-csv">JSON to CSV</option><option value="csv-json">CSV to JSON</option></select>
+      </div>
+      <div class="tool-layout converter-layout">
+        <div class="panel">
+          <div class="panel-header"><label for="csvInput">Input</label><div class="panel-actions"><button class="panel-action" id="clearCsvInputBtn" type="button">Clear</button></div></div>
+          <textarea id="csvInput" placeholder="Paste a JSON array of objects here..."></textarea>
+        </div>
+        <div class="panel">
+          <div class="panel-header"><label for="csvOutput">Converted output</label><div class="panel-actions"><button class="panel-action" id="clearCsvOutputBtn" type="button">Clear</button><button class="panel-action" id="copyCsvOutputBtn" type="button">Copy</button></div></div>
+          <pre class="output" id="csvOutput" aria-live="polite"></pre>
+        </div>
+      </div>
+      <p class="tool-note">CSV cells are text. Nested JSON values are serialized into a cell.</p>
+      <button class="action" id="convertCsvBtn" type="button" style="margin-top:14px;">Convert</button>
+    </section>
+
+    <!-- YAML converter -->
+    <section id="yaml" style="display:none;">
+      <div class="section-heading"><h2>JSON ↔ YAML Converter</h2><p>Convert JSON and YAML for configuration files, DevOps workflows, and Kubernetes manifests.</p></div>
+      <div class="converter-direction">
+        <label class="builder-label" for="yamlDirection">Conversion direction</label>
+        <select class="builder-select" id="yamlDirection"><option value="json-yaml">JSON to YAML</option><option value="yaml-json">YAML to JSON</option></select>
+      </div>
+      <div class="tool-layout converter-layout">
+        <div class="panel">
+          <div class="panel-header"><label for="yamlInput">Input</label><div class="panel-actions"><button class="panel-action" id="clearYamlInputBtn" type="button">Clear</button></div></div>
+          <textarea id="yamlInput" placeholder="Paste JSON here..."></textarea>
+        </div>
+        <div class="panel">
+          <div class="panel-header"><label for="yamlOutput">Converted output</label><div class="panel-actions"><button class="panel-action" id="clearYamlOutputBtn" type="button">Clear</button><button class="panel-action" id="copyYamlOutputBtn" type="button">Copy</button></div></div>
+          <pre class="output" id="yamlOutput" aria-live="polite"></pre>
+        </div>
+      </div>
+      <button class="action" id="convertYamlBtn" type="button" style="margin-top:14px;">Convert</button>
+    </section>
+
+    <!-- Tree viewer -->
+    <section id="tree" style="display:none;">
+      <div class="section-heading"><h2>JSON Tree Viewer</h2><p>Explore nested JSON with collapsible branches and search for keys or values.</p></div>
+      <div class="tool-layout">
+        <div class="panel">
+          <div class="panel-header"><label for="treeInput">JSON input</label><div class="panel-actions"><button class="panel-action" id="clearTreeInputBtn" type="button">Clear</button></div></div>
+          <textarea id="treeInput" placeholder="Paste JSON to explore..."></textarea>
+          <button class="action" id="viewTreeBtn" type="button">View JSON tree</button>
+        </div>
+        <div class="panel">
+          <div class="panel-header"><label for="treeSearch">Tree</label><div class="panel-actions"><button class="panel-action" id="expandTreeBtn" type="button">Expand All</button><button class="panel-action" id="collapseTreeBtn" type="button">Collapse All</button></div></div>
+          <input id="treeSearch" type="search" placeholder="Search keys and values..." aria-label="Search JSON tree">
+          <div class="tree-output" id="treeOutput" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer>JSON Tools &middot; Format, build, validate</footer>
+  <footer>JSON Tools &middot; Format, build, validate, compare, convert, minify, explore</footer>
   <div class="toast" id="toast" role="status" aria-live="polite">Copied to clipboard</div>
 
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
   <script>
     // Shrink header on scroll
     window.addEventListener('scroll', () => {
@@ -639,6 +809,358 @@
         output.textContent = "Invalid JSON ❌: " + e.message;
         output.classList.add('error');
       }
+    });
+
+    // JSON comparison
+    const compareValues = (first, second, path, differences) => {
+      if (first === null || second === null || typeof first !== 'object' || typeof second !== 'object') {
+        if (!Object.is(first, second)) differences.push(`${path}: ${JSON.stringify(first)} -> ${JSON.stringify(second)}`);
+        return;
+      }
+      if (Array.isArray(first) !== Array.isArray(second)) {
+        differences.push(`${path}: ${JSON.stringify(first)} -> ${JSON.stringify(second)}`);
+        return;
+      }
+      const firstKeys = Object.keys(first);
+      const secondKeys = Object.keys(second);
+      const keys = new Set([...firstKeys, ...secondKeys]);
+      keys.forEach(key => {
+        const childPath = Array.isArray(first)
+          ? `${path}[${key}]`
+          : `${path}[${JSON.stringify(key)}]`;
+        if (!Object.prototype.hasOwnProperty.call(second, key)) {
+          differences.push(`${childPath}: removed (was ${JSON.stringify(first[key])})`);
+        } else if (!Object.prototype.hasOwnProperty.call(first, key)) {
+          differences.push(`${childPath}: added (${JSON.stringify(second[key])})`);
+        } else {
+          compareValues(first[key], second[key], childPath, differences);
+        }
+      });
+    };
+    document.getElementById('compareBtn').addEventListener('click', () => {
+      const output = document.getElementById('compareOutput');
+      try {
+        const first = JSON.parse(document.getElementById('compareInputA').value);
+        const second = JSON.parse(document.getElementById('compareInputB').value);
+        const differences = [];
+        compareValues(first, second, '$', differences);
+        output.textContent = differences.length
+          ? `Found ${differences.length} difference${differences.length === 1 ? '' : 's'}:\n${differences.join('\n')}`
+          : 'The JSON values are identical.';
+        output.classList.remove('error');
+      } catch (error) {
+        output.textContent = `Invalid JSON: ${error.message}`;
+        output.classList.add('error');
+      }
+    });
+    document.getElementById('clearCompareInputABtn').addEventListener('click', () => {
+      document.getElementById('compareInputA').value = '';
+    });
+    document.getElementById('clearCompareInputBBtn').addEventListener('click', () => {
+      document.getElementById('compareInputB').value = '';
+    });
+    document.getElementById('clearCompareOutputBtn').addEventListener('click', () => {
+      const output = document.getElementById('compareOutput');
+      output.textContent = '';
+      output.classList.remove('error');
+    });
+    document.getElementById('copyCompareOutputBtn').addEventListener('click', async event => {
+      const output = document.getElementById('compareOutput').textContent;
+      if (!output) {
+        showToast('Nothing to copy', event.currentTarget);
+        return;
+      }
+      if (await copyText(output)) showToast('Copied to clipboard', event.currentTarget);
+      else showToast('Copy unavailable', event.currentTarget);
+    });
+
+    const setToolError = (output, error) => {
+      output.textContent = `Conversion failed: ${error.message}`;
+      output.classList.add('error');
+    };
+    const bindToolActions = (inputId, outputId, clearInputId, clearOutputId, copyId) => {
+      const output = document.getElementById(outputId);
+      document.getElementById(clearInputId).addEventListener('click', () => {
+        document.getElementById(inputId).value = '';
+      });
+      document.getElementById(clearOutputId).addEventListener('click', () => {
+        output.textContent = '';
+        output.classList.remove('error');
+      });
+      document.getElementById(copyId).addEventListener('click', async event => {
+        if (!output.textContent) {
+          showToast('Nothing to copy', event.currentTarget);
+          return;
+        }
+        if (await copyText(output.textContent)) showToast('Copied to clipboard', event.currentTarget);
+        else showToast('Copy unavailable', event.currentTarget);
+      });
+    };
+
+    // Minify JSON and report the UTF-8 payload savings.
+    bindToolActions('minifyInput', 'minifyOutput', 'clearMinifyInputBtn', 'clearMinifyOutputBtn', 'copyMinifyOutputBtn');
+    document.getElementById('minifyBtn').addEventListener('click', () => {
+      const input = document.getElementById('minifyInput').value;
+      const output = document.getElementById('minifyOutput');
+      const stats = document.getElementById('minifyStats');
+      try {
+        const minified = JSON.stringify(JSON.parse(input));
+        const beforeBytes = new Blob([input]).size;
+        const afterBytes = new Blob([minified]).size;
+        output.textContent = minified;
+        stats.textContent = `Payload: ${beforeBytes} bytes before, ${afterBytes} bytes after, ${Math.max(0, beforeBytes - afterBytes)} bytes saved.`;
+        output.classList.remove('error');
+      } catch (error) {
+        setToolError(output, error);
+        stats.textContent = '';
+      }
+    });
+
+    // XML conversion uses a root element and explicit type markers to preserve JSON values.
+    const xmlEscape = value => String(value).replace(/[&<>"']/g, character => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;'
+    })[character]);
+    const assertXmlName = name => {
+      if (!/^[A-Za-z_][A-Za-z0-9_.:-]*$/.test(name)) throw new Error(`Invalid XML element or attribute name: ${name}`);
+      return name;
+    };
+    const jsonToXmlElement = (name, value) => {
+      const tag = assertXmlName(name);
+      if (value === null) return `<${tag} json-type="null"></${tag}>`;
+      if (Array.isArray(value)) return `<${tag} json-type="array">${value.map(item => jsonToXmlElement('item', item)).join('')}</${tag}>`;
+      if (typeof value === 'object') {
+        const attributes = value['@attributes'] && typeof value['@attributes'] === 'object' && !Array.isArray(value['@attributes'])
+          ? Object.entries(value['@attributes']).map(([key, item]) => {
+            const attributeName = assertXmlName(key);
+            if (attributeName === 'json-type') throw new Error('The json-type attribute name is reserved.');
+            return ` ${attributeName}="${xmlEscape(item)}"`;
+          }).join('')
+          : '';
+        const text = Object.prototype.hasOwnProperty.call(value, '#text') ? xmlEscape(value['#text']) : '';
+        const children = Object.entries(value)
+          .filter(([key]) => key !== '@attributes' && key !== '#text')
+          .map(([key, item]) => jsonToXmlElement(key, item))
+          .join('');
+        return `<${tag} json-type="object"${attributes}>${text}${children}</${tag}>`;
+      }
+      const type = typeof value;
+      return `<${tag} json-type="${type}">${xmlEscape(value)}</${tag}>`;
+    };
+    const xmlElementToJson = element => {
+      const marker = element.getAttribute('json-type');
+      const attributes = Array.from(element.attributes)
+        .filter(attribute => attribute.name !== 'json-type')
+        .map(attribute => [attribute.name, attribute.value]);
+      const children = Array.from(element.children);
+      const rawText = Array.from(element.childNodes)
+        .filter(node => node.nodeType === Node.TEXT_NODE || node.nodeType === Node.CDATA_SECTION_NODE)
+        .map(node => node.nodeValue)
+        .join('');
+      const text = rawText.trim();
+      if (marker === 'null') return null;
+      if (marker === 'string') return rawText;
+      if (marker === 'number') {
+        const number = Number(text);
+        if (!Number.isFinite(number)) throw new Error(`Invalid number in <${element.tagName}>.`);
+        return number;
+      }
+      if (marker === 'boolean') {
+        if (text !== 'true' && text !== 'false') throw new Error(`Invalid boolean in <${element.tagName}>.`);
+        return text === 'true';
+      }
+      if (marker === 'array') return children.map(xmlElementToJson);
+      if (!children.length && !attributes.length && marker !== 'object') return rawText;
+      const result = {};
+      if (attributes.length) result['@attributes'] = Object.fromEntries(attributes);
+      const objectText = marker === 'object' && (text || !children.length) ? rawText : text;
+      if (objectText) result['#text'] = objectText;
+      children.forEach(child => {
+        const value = xmlElementToJson(child);
+        if (!Object.prototype.hasOwnProperty.call(result, child.tagName)) result[child.tagName] = value;
+        else if (Array.isArray(result[child.tagName])) result[child.tagName].push(value);
+        else result[child.tagName] = [result[child.tagName], value];
+      });
+      return result;
+    };
+    bindToolActions('xmlInput', 'xmlOutput', 'clearXmlInputBtn', 'clearXmlOutputBtn', 'copyXmlOutputBtn');
+    document.getElementById('convertXmlBtn').addEventListener('click', () => {
+      const output = document.getElementById('xmlOutput');
+      const input = document.getElementById('xmlInput').value;
+      try {
+        let converted;
+        if (document.getElementById('xmlDirection').value === 'json-xml') {
+          converted = jsonToXmlElement('root', JSON.parse(input));
+        } else {
+          if (/<!DOCTYPE/i.test(input)) throw new Error('DOCTYPE declarations are not supported.');
+          const xml = new DOMParser().parseFromString(input, 'application/xml');
+          if (xml.getElementsByTagName('parsererror').length || xml.documentElement.localName === 'parsererror') throw new Error('The XML document is not well-formed.');
+          converted = JSON.stringify(xmlElementToJson(xml.documentElement), null, 2);
+        }
+        output.textContent = converted;
+        output.classList.remove('error');
+      } catch (error) {
+        setToolError(output, error);
+      }
+    });
+
+    // CSV conversion handles quoted fields and exports arrays of object records.
+    const csvCell = value => {
+      const text = value !== null && typeof value === 'object' ? JSON.stringify(value) : value == null ? '' : String(value);
+      return /[",\r\n]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text;
+    };
+    const jsonToCsv = value => {
+      if (!Array.isArray(value) || value.some(row => row === null || typeof row !== 'object' || Array.isArray(row))) {
+        throw new Error('JSON to CSV requires an array of objects.');
+      }
+      const columns = [...new Set(value.flatMap(row => Object.keys(row)))];
+      if (!columns.length) return '';
+      return [columns.map(csvCell).join(','), ...value.map(row => columns.map(column => csvCell(row[column])).join(','))].join('\r\n');
+    };
+    const parseCsv = text => {
+      if (!text) return [];
+      const rows = [];
+      let row = [];
+      let field = '';
+      let quoted = false;
+      for (let index = 0; index < text.length; index += 1) {
+        const character = text[index];
+        if (quoted) {
+          if (character === '"' && text[index + 1] === '"') {
+            field += '"';
+            index += 1;
+          } else if (character === '"') quoted = false;
+          else field += character;
+        } else if (character === '"' && field === '') quoted = true;
+        else if (character === ',') {
+          row.push(field);
+          field = '';
+        } else if (character === '\n' || character === '\r') {
+          if (character === '\r' && text[index + 1] === '\n') index += 1;
+          row.push(field);
+          rows.push(row);
+          row = [];
+          field = '';
+        } else field += character;
+      }
+      if (quoted) throw new Error('CSV contains an unclosed quoted field.');
+      if (field || row.length || !/[\r\n]$/.test(text)) {
+        row.push(field);
+        rows.push(row);
+      }
+      if (!rows.length) return [];
+      const headers = rows.shift().map(header => header.replace(/^\uFEFF/, ''));
+      if (headers.some(header => !header)) throw new Error('CSV column names cannot be empty.');
+      if (new Set(headers).size !== headers.length) throw new Error('CSV column names must be unique.');
+      return rows.filter(values => values.some(value => value !== '')).map(values => {
+        if (values.length > headers.length) throw new Error('A CSV row has more cells than the header.');
+        return Object.fromEntries(headers.map((header, index) => [header, values[index] ?? '']));
+      });
+    };
+    bindToolActions('csvInput', 'csvOutput', 'clearCsvInputBtn', 'clearCsvOutputBtn', 'copyCsvOutputBtn');
+    document.getElementById('convertCsvBtn').addEventListener('click', () => {
+      const output = document.getElementById('csvOutput');
+      try {
+        const direction = document.getElementById('csvDirection').value;
+        const input = document.getElementById('csvInput').value;
+        output.textContent = direction === 'json-csv'
+          ? jsonToCsv(JSON.parse(input))
+          : JSON.stringify(parseCsv(input), null, 2);
+        output.classList.remove('error');
+      } catch (error) {
+        setToolError(output, error);
+      }
+    });
+
+    // YAML parsing and dumping use js-yaml's browser build.
+    bindToolActions('yamlInput', 'yamlOutput', 'clearYamlInputBtn', 'clearYamlOutputBtn', 'copyYamlOutputBtn');
+    document.getElementById('convertYamlBtn').addEventListener('click', () => {
+      const output = document.getElementById('yamlOutput');
+      try {
+        if (!window.jsyaml) throw new Error('The YAML library could not be loaded. Check your internet connection and reload.');
+        const direction = document.getElementById('yamlDirection').value;
+        const input = document.getElementById('yamlInput').value;
+        output.textContent = direction === 'json-yaml'
+          ? window.jsyaml.dump(JSON.parse(input), { noRefs: true, lineWidth: -1 })
+          : JSON.stringify(window.jsyaml.load(input) ?? null, null, 2);
+        output.classList.remove('error');
+      } catch (error) {
+        setToolError(output, error);
+      }
+    });
+
+    // Build the JSON tree with DOM text nodes so input is never treated as markup.
+    let treeData;
+    let hasTreeData = false;
+    const appendTreeText = (container, text, query, className) => {
+      const span = document.createElement('span');
+      if (className) span.className = className;
+      const matchIndex = query ? text.toLowerCase().indexOf(query) : -1;
+      if (matchIndex < 0) span.textContent = text;
+      else {
+        span.append(document.createTextNode(text.slice(0, matchIndex)));
+        const mark = document.createElement('mark');
+        mark.textContent = text.slice(matchIndex, matchIndex + query.length);
+        span.append(mark, document.createTextNode(text.slice(matchIndex + query.length)));
+      }
+      container.append(span);
+    };
+    const appendTreeNode = (list, key, value, query) => {
+      const item = document.createElement('li');
+      const isContainer = value !== null && typeof value === 'object';
+      if (isContainer) {
+        const entries = Array.isArray(value) ? value.map((child, index) => [`[${index}]`, child]) : Object.entries(value);
+        const details = document.createElement('details');
+        const summary = document.createElement('summary');
+        appendTreeText(summary, key, query, 'tree-key');
+        summary.append(document.createTextNode(`: ${Array.isArray(value) ? 'Array' : 'Object'} (${entries.length})`));
+        details.open = Boolean(query && JSON.stringify([key, value]).toLowerCase().includes(query));
+        details.append(summary);
+        const children = document.createElement('ul');
+        entries.forEach(([childKey, childValue]) => appendTreeNode(children, String(childKey), childValue, query));
+        details.append(children);
+        item.append(details);
+      } else {
+        appendTreeText(item, key, query, 'tree-key');
+        item.append(document.createTextNode(': '));
+        appendTreeText(item, JSON.stringify(value), query, 'tree-value');
+      }
+      list.append(item);
+    };
+    const renderTree = () => {
+      if (!hasTreeData) return;
+      const output = document.getElementById('treeOutput');
+      const query = document.getElementById('treeSearch').value.trim().toLowerCase();
+      output.textContent = '';
+      output.classList.remove('error');
+      const list = document.createElement('ul');
+      appendTreeNode(list, 'root', treeData, query);
+      output.append(list);
+    };
+    document.getElementById('viewTreeBtn').addEventListener('click', () => {
+      const output = document.getElementById('treeOutput');
+      try {
+        treeData = JSON.parse(document.getElementById('treeInput').value);
+        hasTreeData = true;
+        renderTree();
+      } catch (error) {
+        hasTreeData = false;
+        output.textContent = `Invalid JSON: ${error.message}`;
+        output.classList.add('error');
+      }
+    });
+    document.getElementById('treeSearch').addEventListener('input', renderTree);
+    document.getElementById('expandTreeBtn').addEventListener('click', () => {
+      document.querySelectorAll('#treeOutput details').forEach(details => { details.open = true; });
+    });
+    document.getElementById('collapseTreeBtn').addEventListener('click', () => {
+      document.querySelectorAll('#treeOutput details').forEach(details => { details.open = false; });
+    });
+    document.getElementById('clearTreeInputBtn').addEventListener('click', () => {
+      document.getElementById('treeInput').value = '';
+      document.getElementById('treeSearch').value = '';
+      hasTreeData = false;
+      document.getElementById('treeOutput').textContent = '';
+      document.getElementById('treeOutput').classList.remove('error');
     });
   </script>
 </body>
