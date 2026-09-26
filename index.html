@@ -63,6 +63,7 @@
       --paper: #f5f8f6;
       --line: #d6e3e1;
       --panel: #ffffff;
+      --editor-height:340px;
     }
     * { box-sizing:border-box; }
     html { overflow-y:scroll; scrollbar-gutter:stable; scrollbar-color:var(--teal) #dce8e9; scrollbar-width:thin; }
@@ -115,7 +116,7 @@
     nav button.active::before { background:#d5ffef; box-shadow:0 0 7px rgba(213,255,239,0.9); }
     nav button:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
     main {
-      width:100%; max-width:1120px; margin:0 auto; padding:156px 24px 64px;
+      width:100%; max-width:1480px; margin:0 auto; padding:156px 24px 64px;
     }
     body.compact-header main { padding-top:148px; }
     footer {
@@ -139,9 +140,15 @@
     .section-heading h2 { margin:0 0 4px; color:var(--teal-dark); font-size:1.25rem; font-weight:700; }
     .section-heading p { margin:0; color:var(--muted); font-size:0.9rem; }
     .tool-layout { display:grid; grid-template-columns:minmax(0, 1fr) minmax(0, 1fr); gap:18px; }
+    .action-layout { grid-template-columns:minmax(0, 1fr) auto minmax(0, 1fr); align-items:stretch; gap:12px; }
+    .action-layout > .action { align-self:center; justify-self:center; min-height:32px; margin-top:0; padding:5px 10px; border-radius:6px; font-size:0.76rem; white-space:nowrap; }
+    .center-action { display:flex; justify-content:center; margin:12px 0; }
+    .center-action .action { min-height:32px; padding:5px 12px; font-size:0.76rem; }
     .converter-direction { max-width:320px; margin-bottom:4px; }
-    .converter-layout textarea, .converter-layout .output { height:280px; min-height:280px; max-height:280px; }
+    .converter-layout textarea, .converter-layout .output { height:var(--editor-height); min-height:var(--editor-height); max-height:var(--editor-height); }
     .converter-layout textarea { resize:none; }
+    .tree-input-panel { display:flex; flex-direction:column; }
+    .tree-input-panel textarea { flex:1 1 auto; margin-bottom:0; }
     .panel {
       min-width:0; padding:18px; background:var(--panel); border:1px solid var(--line);
       border-radius:10px; box-shadow:0 8px 24px rgba(22,47,66,0.07);
@@ -167,13 +174,13 @@
       width:100%; padding:14px; margin-bottom:14px; border:1px solid #c7d9d7;
       border-radius:8px; font:400 0.9rem/1.6 'Space Mono', monospace; background:#fbfdfc;
     }
-    textarea { min-height:280px; resize:vertical; }
+    textarea { min-height:var(--editor-height); resize:vertical; }
     textarea:focus, input:focus { outline:3px solid #c9e8e5; border-color:var(--teal); }
     .output {
-      min-height:280px; margin:0; padding:14px; overflow:auto; white-space:pre-wrap;
+      min-height:var(--editor-height); margin:0; padding:14px; overflow:auto; white-space:pre-wrap;
       background:#102d35; color:#d8f0e9; border-radius:8px; font:400 0.9rem/1.6 'Space Mono', monospace;
     }
-    .tree-output { min-height:280px; max-height:620px; overflow:auto; padding:12px; background:#fbfdfc; border:1px solid var(--line); border-radius:8px; }
+    .tree-output { min-height:var(--editor-height); max-height:620px; overflow:auto; padding:12px; background:#fbfdfc; border:1px solid var(--line); border-radius:8px; }
     .tree-output ul { margin:4px 0 4px 18px; padding-left:14px; border-left:1px solid var(--line); list-style:none; }
     .tree-output li { margin:3px 0; font:0.82rem/1.5 'Space Mono', monospace; }
     .tree-output summary { cursor:pointer; color:var(--teal-dark); }
@@ -219,19 +226,20 @@
     .builder-section .builder-value { min-height:34px; }
     .builder-section .builder-row { gap:7px; }
     .builder-section .builder-action { min-height:32px; margin-top:9px; padding:7px 14px; font-size:0.8rem; }
-    .builder-section .output { min-height:280px; padding:11px; font-size:0.8rem; }
+    .builder-section .output { min-height:var(--editor-height); padding:11px; font-size:0.8rem; }
     @media (max-width:700px) {
       .builder-row { grid-template-columns:1fr; gap:0; }
     }
     .error { color:#ff9e9e; font-weight:bold; }
     @keyframes appear { from { opacity:0; transform:translateY(5px); } to { opacity:1; transform:none; } }
     @media (max-width:700px) {
+      :root { --editor-height:300px; }
       nav { height:106px; }
       nav button { flex:1 1 calc(33.333% - 4px); min-width:0; font-size:0.68rem; padding:4px 5px; }
       main { padding:168px 14px 36px; }
       body.compact-header main { padding-top:160px; }
       .tool-layout { grid-template-columns:1fr; }
-      textarea, .output { min-height:280px; }
+      textarea, .output { min-height:var(--editor-height); }
     }
     @media (max-width:380px) {
       nav { height:174px; }
@@ -280,7 +288,7 @@
         <h2>Format JSON</h2>
         <p>Paste raw JSON on the left and turn it into clean, readable data.</p>
       </div>
-      <div class="tool-layout">
+      <div class="tool-layout action-layout">
         <div class="panel">
           <div class="panel-header">
             <label for="jsonInput">Input</label>
@@ -290,8 +298,8 @@
             </div>
           </div>
           <textarea id="jsonInput" placeholder="Paste JSON here..."></textarea>
-          <button class="action" id="formatBtn">Format JSON</button>
         </div>
+        <button class="action" id="formatBtn" type="button">Format</button>
         <div class="panel">
           <div class="panel-header">
             <label for="output">Formatted output</label>
@@ -310,7 +318,7 @@
     <!-- Creator -->
     <section id="creator" class="builder-section" style="display:none;">
       <div class="section-heading"><h2>Build JSON</h2><p>Choose a structure, add typed values, and see the JSON update immediately.</p></div>
-      <div class="tool-layout">
+      <div class="tool-layout action-layout">
         <div class="panel form-stack">
           <div class="panel-header">
             <label for="creatorMode">Builder</label>
@@ -350,8 +358,8 @@
               <input id="arrayIndexInput" type="number" min="0" placeholder="Next item">
             </div>
           </div>
-          <button class="action builder-action" id="addPairBtn" type="button">Add to JSON</button>
         </div>
+        <button class="action builder-action" id="addPairBtn" type="button">Add to JSON</button>
         <div class="panel">
           <div class="panel-header">
             <label for="creatorOutput">Generated output</label>
@@ -370,7 +378,7 @@
     <!-- Validator -->
     <section id="validator" style="display:none;">
       <div class="section-heading"><h2>Validate JSON</h2><p>Check whether your JSON is syntactically valid.</p></div>
-      <div class="tool-layout">
+      <div class="tool-layout action-layout">
         <div class="panel form-stack">
           <div class="panel-header">
             <label for="validateInput">JSON input</label>
@@ -380,8 +388,8 @@
             </div>
           </div>
           <textarea id="validateInput" placeholder="Paste JSON to validate..."></textarea>
-          <button class="action" id="validateBtn">Validate JSON</button>
         </div>
+        <button class="action" id="validateBtn" type="button">Validate</button>
         <div class="panel">
           <div class="panel-header">
             <label for="validateOutput">Validation result</label>
@@ -404,50 +412,46 @@
         <div class="panel">
           <div class="panel-header">
             <label for="compareInputA">First JSON</label>
-            <div class="panel-actions">
-              <button class="panel-action" id="clearCompareInputABtn" type="button">Clear</button>
-            </div>
+            <div class="panel-actions"><button class="panel-action" id="clearCompareInputABtn" type="button">Clear</button></div>
           </div>
           <textarea id="compareInputA" placeholder="Paste the first JSON here..."></textarea>
         </div>
         <div class="panel">
           <div class="panel-header">
             <label for="compareInputB">Second JSON</label>
-            <div class="panel-actions">
-              <button class="panel-action" id="clearCompareInputBBtn" type="button">Clear</button>
-            </div>
+            <div class="panel-actions"><button class="panel-action" id="clearCompareInputBBtn" type="button">Clear</button></div>
           </div>
           <textarea id="compareInputB" placeholder="Paste the second JSON here..."></textarea>
         </div>
       </div>
-      <button class="action" id="compareBtn" type="button" style="margin:14px 0;">Compare JSON</button>
+      <div class="center-action"><button class="action" id="compareBtn" type="button">Compare</button></div>
       <div class="panel">
-        <div class="panel-header">
-          <label for="compareOutput">Comparison result</label>
-          <div class="panel-actions">
-            <button class="panel-action" id="clearCompareOutputBtn" type="button">Clear</button>
-            <button class="panel-action" id="copyCompareOutputBtn" type="button">Copy</button>
+          <div class="panel-header">
+            <label for="compareOutput">Comparison result</label>
+            <div class="panel-actions">
+              <button class="panel-action" id="clearCompareOutputBtn" type="button">Clear</button>
+              <button class="panel-action" id="copyCompareOutputBtn" type="button">Copy</button>
+            </div>
           </div>
-        </div>
-        <pre class="output" id="compareOutput" aria-live="polite"></pre>
+          <pre class="output" id="compareOutput" aria-live="polite"></pre>
       </div>
     </section>
 
     <!-- Minifier -->
     <section id="minifier" style="display:none;">
       <div class="section-heading"><h2>JSON Minifier</h2><p>Remove unnecessary whitespace to reduce JSON payload size.</p></div>
-      <div class="tool-layout">
+      <div class="tool-layout action-layout">
         <div class="panel">
           <div class="panel-header"><label for="minifyInput">JSON input</label><div class="panel-actions"><button class="panel-action" id="clearMinifyInputBtn" type="button">Clear</button></div></div>
           <textarea id="minifyInput" placeholder="Paste JSON to minify..."></textarea>
         </div>
+        <button class="action" id="minifyBtn" type="button">Minify</button>
         <div class="panel">
           <div class="panel-header"><label for="minifyOutput">Minified JSON</label><div class="panel-actions"><button class="panel-action" id="clearMinifyOutputBtn" type="button">Clear</button><button class="panel-action" id="copyMinifyOutputBtn" type="button">Copy</button></div></div>
           <pre class="output" id="minifyOutput" aria-live="polite"></pre>
           <p class="tool-stats" id="minifyStats" aria-live="polite"></p>
         </div>
       </div>
-      <button class="action" id="minifyBtn" type="button" style="margin-top:14px;">Minify JSON</button>
     </section>
 
     <!-- XML converter -->
@@ -457,17 +461,17 @@
         <label class="builder-label" for="xmlDirection">Conversion direction</label>
         <select class="builder-select" id="xmlDirection"><option value="json-xml">JSON to XML</option><option value="xml-json">XML to JSON</option></select>
       </div>
-      <div class="tool-layout converter-layout">
+      <div class="tool-layout action-layout converter-layout">
         <div class="panel">
           <div class="panel-header"><label for="xmlInput">Input</label><div class="panel-actions"><button class="panel-action" id="clearXmlInputBtn" type="button">Clear</button></div></div>
           <textarea id="xmlInput" placeholder="Paste JSON here..."></textarea>
         </div>
+        <button class="action" id="convertXmlBtn" type="button">Convert</button>
         <div class="panel">
           <div class="panel-header"><label for="xmlOutput">Converted output</label><div class="panel-actions"><button class="panel-action" id="clearXmlOutputBtn" type="button">Clear</button><button class="panel-action" id="copyXmlOutputBtn" type="button">Copy</button></div></div>
           <pre class="output" id="xmlOutput" aria-live="polite"></pre>
         </div>
       </div>
-      <button class="action" id="convertXmlBtn" type="button" style="margin-top:14px;">Convert</button>
     </section>
 
     <!-- CSV converter -->
@@ -477,18 +481,18 @@
         <label class="builder-label" for="csvDirection">Conversion direction</label>
         <select class="builder-select" id="csvDirection"><option value="json-csv">JSON to CSV</option><option value="csv-json">CSV to JSON</option></select>
       </div>
-      <div class="tool-layout converter-layout">
+      <div class="tool-layout action-layout converter-layout">
         <div class="panel">
           <div class="panel-header"><label for="csvInput">Input</label><div class="panel-actions"><button class="panel-action" id="clearCsvInputBtn" type="button">Clear</button></div></div>
           <textarea id="csvInput" placeholder="Paste a JSON array of objects here..."></textarea>
         </div>
+        <button class="action" id="convertCsvBtn" type="button">Convert</button>
         <div class="panel">
           <div class="panel-header"><label for="csvOutput">Converted output</label><div class="panel-actions"><button class="panel-action" id="clearCsvOutputBtn" type="button">Clear</button><button class="panel-action" id="copyCsvOutputBtn" type="button">Copy</button></div></div>
           <pre class="output" id="csvOutput" aria-live="polite"></pre>
         </div>
       </div>
       <p class="tool-note">CSV cells are text. Nested JSON values are serialized into a cell.</p>
-      <button class="action" id="convertCsvBtn" type="button" style="margin-top:14px;">Convert</button>
     </section>
 
     <!-- YAML converter -->
@@ -498,28 +502,28 @@
         <label class="builder-label" for="yamlDirection">Conversion direction</label>
         <select class="builder-select" id="yamlDirection"><option value="json-yaml">JSON to YAML</option><option value="yaml-json">YAML to JSON</option></select>
       </div>
-      <div class="tool-layout converter-layout">
+      <div class="tool-layout action-layout converter-layout">
         <div class="panel">
           <div class="panel-header"><label for="yamlInput">Input</label><div class="panel-actions"><button class="panel-action" id="clearYamlInputBtn" type="button">Clear</button></div></div>
           <textarea id="yamlInput" placeholder="Paste JSON here..."></textarea>
         </div>
+        <button class="action" id="convertYamlBtn" type="button">Convert</button>
         <div class="panel">
           <div class="panel-header"><label for="yamlOutput">Converted output</label><div class="panel-actions"><button class="panel-action" id="clearYamlOutputBtn" type="button">Clear</button><button class="panel-action" id="copyYamlOutputBtn" type="button">Copy</button></div></div>
           <pre class="output" id="yamlOutput" aria-live="polite"></pre>
         </div>
       </div>
-      <button class="action" id="convertYamlBtn" type="button" style="margin-top:14px;">Convert</button>
     </section>
 
     <!-- Tree viewer -->
     <section id="tree" style="display:none;">
       <div class="section-heading"><h2>JSON Tree Viewer</h2><p>Explore nested JSON with collapsible branches and search for keys or values.</p></div>
-      <div class="tool-layout">
-        <div class="panel">
+      <div class="tool-layout action-layout">
+        <div class="panel tree-input-panel">
           <div class="panel-header"><label for="treeInput">JSON input</label><div class="panel-actions"><button class="panel-action" id="clearTreeInputBtn" type="button">Clear</button></div></div>
           <textarea id="treeInput" placeholder="Paste JSON to explore..."></textarea>
-          <button class="action" id="viewTreeBtn" type="button">View JSON tree</button>
         </div>
+        <button class="action" id="viewTreeBtn" type="button">View JSON tree</button>
         <div class="panel">
           <div class="panel-header"><label for="treeSearch">Tree</label><div class="panel-actions"><button class="panel-action" id="expandTreeBtn" type="button">Expand All</button><button class="panel-action" id="collapseTreeBtn" type="button">Collapse All</button></div></div>
           <input id="treeSearch" type="search" placeholder="Search keys and values..." aria-label="Search JSON tree">
