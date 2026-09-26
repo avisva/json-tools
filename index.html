@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZKEKK57DNB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];    function gtag(){dataLayer.push(arguments);}    gtag('js', new Date());    gtag('config', 'G-ZKEKK57DNB');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Format, beautify, validate, and build JSON online for free. Use this fast browser-based JSON formatter and validator to create and check clean JSON instantly.">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="theme-color" content="#0c7c86">
+  <link rel="canonical" href="https://json-tools.enviz.in/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="JSON Tools">
+  <meta property="og:title" content="Free Online JSON Formatter, Validator &amp; Builder">
+  <meta property="og:description" content="Format, beautify, validate, and build JSON online for free with a fast browser-based JSON tool.">
+  <meta property="og:url" content="https://json-tools.enviz.in/">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Free Online JSON Formatter, Validator &amp; Builder">
+  <meta name="twitter:description" content="Format, beautify, validate, and build JSON online for free with a fast browser-based JSON tool.">
+  <title>Free Online JSON Formatter, Validator &amp; Builder | JSON Tools</title>
+   <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+  <link rel="preload" href="favicon.png" as="image">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "JSON Tools",
+      "description": "Free online JSON formatter, beautifier, validator, builder, and generator.",
+      "url": "https://json-tools.enviz.in/",
+      "inLanguage": "en",
+      "isAccessibleForFree": true,
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires JavaScript",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "Format and beautify JSON",
+        "Build and generate simple, array, and complex JSON",
+        "Validate JSON syntax",
+        "Copy and save JSON output"
+      ]
+    }
+  </script>
+  <style>
+    :root {
+      --ink: #17343b;
+      --muted: #6a7f84;
+      --teal: #0c7c86;
+      --teal-dark: #07545d;
+      --accent: #4bb3b5;
+      --paper: #f5f8f6;
+      --line: #d6e3e1;
+      --panel: #ffffff;
+    }
+    * { box-sizing:border-box; }
+    html { overflow-y:scroll; scrollbar-gutter:stable; scrollbar-color:var(--teal) #dce8e9; scrollbar-width:thin; }
+    body {
+      font-family:'Segoe UI', Tahoma, sans-serif; margin:0; color:var(--ink);
+      background:radial-gradient(circle at 8% 0%, #d9eff0 0, transparent 34%), linear-gradient(135deg, #ffffff, var(--paper));
+      overflow-x:hidden;
+    }
+    body::-webkit-scrollbar { width:10px; }
+    body::-webkit-scrollbar-track { background:#dce8e9; }
+    body::-webkit-scrollbar-thumb { background:var(--teal); border:2px solid #dce8e9; border-radius:8px; }
+    body::-webkit-scrollbar-thumb:hover { background:var(--teal-dark); }
+    header {
+      position: fixed; top:0; left:0; right:0;
+      background:linear-gradient(135deg, #07545d, #0c7c86); color:white; height:48px;
+      text-align:center; padding:2px;
+      transition: all 0.3s ease;
+      box-shadow:0 4px 18px rgba(23,52,59,0.18);
+      z-index:1000;
+    }
+    header h1 { margin:0; font-size:1.2rem; line-height:1.15; letter-spacing:0.01em; font-weight:700; transition:font-size 0.3s ease; }
+    header p { margin:0; color:#b9d5d4; font-size:0.65rem; line-height:1.1; transition:font-size 0.3s ease, opacity 0.3s ease; }
+    header.shrink { height:40px; padding:2px; }
+    header.shrink h1 { font-size:1.1rem; }
+    header.shrink p { font-size:0; opacity:0; margin:0; }
+    nav {
+      position: fixed; top:48px; left:0; right:0; height:34px;
+      display:flex; justify-content:center; gap:3px; padding:2px 8px;
+      background:rgba(250,255,254,0.96); border-bottom:1px solid var(--line);
+      z-index:999;
+    }
+    body.compact-header nav { top:40px; }
+    nav button {
+      flex:1; max-width:240px; padding:4px 8px; border:1px solid transparent; border-radius:5px;
+      background:transparent; color:var(--muted); cursor:pointer;
+      font:600 0.76rem 'Segoe UI', Tahoma, sans-serif; transition:background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+    }
+    nav button:hover { background:#e3f0ee; color:var(--ink); border-color:#c5e0df; transform:translateY(-1px); }
+    nav button.active { background:linear-gradient(135deg, #1599a0, var(--teal)); color:white; border-color:var(--teal); box-shadow:0 3px 9px rgba(12,124,134,0.25); }
+    main {
+      width:100%; max-width:1120px; margin:0 auto; padding:114px 24px 64px;
+    }
+    body.compact-header main { padding-top:106px; }
+    footer {
+      position:fixed; right:0; bottom:0; left:0; z-index:998;
+      min-height:26px; display:flex; align-items:center; justify-content:center;
+      padding:4px 12px; background:var(--ink); color:#b9d5d4;
+      border-top:2px solid var(--teal); font-size:0.65rem; letter-spacing:0.02em;
+      box-shadow:0 -4px 16px rgba(23,52,59,0.12);
+    }
+    .toast {
+      position:fixed; left:50%; bottom:42px; z-index:1100;
+      padding:6px 10px; border:1px solid var(--accent); border-radius:5px;
+      background:var(--ink); color:white; font-size:0.68rem;
+      box-shadow:0 4px 12px rgba(23,52,59,0.2);
+      opacity:0; pointer-events:none; transform:translate(-50%, 8px);
+      transition:opacity 0.2s ease, transform 0.2s ease;
+    }
+    .toast.visible { opacity:1; transform:translate(-50%, 0); }
+    section { animation:appear 0.25s ease-out; }
+    .section-heading { margin-bottom:18px; }
+    .section-heading h2 { margin:0 0 4px; color:var(--teal-dark); font-size:1.25rem; font-weight:700; }
+    .section-heading p { margin:0; color:var(--muted); font-size:0.9rem; }
+    .tool-layout { display:grid; grid-template-columns:minmax(0, 1fr) minmax(0, 1fr); gap:18px; }
+    .panel {
+      min-width:0; padding:18px; background:var(--panel); border:1px solid var(--line);
+      border-radius:10px; box-shadow:0 8px 24px rgba(22,47,66,0.07);
+    }
+    .panel > textarea, .panel > input, .panel > .output { width:100%; max-width:100%; }
+    .panel-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+    .panel-header label { font-weight:700; font-size:0.88rem; }
+    .panel-actions { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:5px; }
+    .panel-action {
+      min-height:28px; padding:4px 10px; border:1px solid #9ec9c8; border-radius:6px;
+      background:linear-gradient(145deg, #ffffff, #e2f2f1); color:var(--teal-dark); cursor:pointer;
+      font:600 0.7rem 'Segoe UI', Tahoma, sans-serif;
+      box-shadow:0 2px 4px rgba(23,52,59,0.14), inset 0 1px rgba(255,255,255,0.8);
+      transition:background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+    }
+    .panel-action:hover {
+      background:linear-gradient(145deg, #ffffff, #cce9e7); border-color:var(--teal);
+      box-shadow:0 3px 7px rgba(12,124,134,0.24), inset 0 1px rgba(255,255,255,0.85); transform:translateY(-1px);
+    }
+    .panel-action:active { transform:translateY(0); box-shadow:inset 0 1px 2px rgba(23,52,59,0.18); }
+    .panel-action:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+    textarea, input {
+      width:100%; padding:14px; margin-bottom:14px; border:1px solid #c7d9d7;
+      border-radius:8px; font:400 0.9rem/1.6 'Space Mono', monospace; background:#fbfdfc;
+    }
+    textarea { min-height:280px; resize:vertical; }
+    textarea:focus, input:focus { outline:3px solid #c9e8e5; border-color:var(--teal); }
+    .output {
+      min-height:280px; margin:0; padding:14px; overflow:auto; white-space:pre-wrap;
+      background:#102d35; color:#d8f0e9; border-radius:8px; font:400 0.9rem/1.6 'Space Mono', monospace;
+    }
+    button.action {
+      min-height:38px; background:linear-gradient(135deg, #1599a0, var(--teal)); color:white;
+      border:1px solid var(--teal-dark); padding:9px 18px; border-radius:7px; cursor:pointer;
+      font:700 0.88rem 'Segoe UI', Tahoma, sans-serif;
+      box-shadow:0 3px 7px rgba(12,124,134,0.25), inset 0 1px rgba(255,255,255,0.2);
+      transition:background 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    button.action:hover {
+      background:linear-gradient(135deg, #20adb0, var(--teal-dark)); border-color:var(--teal-dark);
+      box-shadow:0 5px 11px rgba(12,124,134,0.3), inset 0 1px rgba(255,255,255,0.25); transform:translateY(-1px);
+    }
+    button.action:active { transform:translateY(0); box-shadow:inset 0 2px 3px rgba(0,0,0,0.2); }
+    button.action:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+    .form-stack input { display:block; padding:9px 12px; margin-bottom:10px; }
+    .builder-label { display:block; margin:0 0 6px; color:var(--muted); font-size:0.76rem; font-weight:600; }
+    .builder-select { width:100%; margin-bottom:14px; padding:10px 12px; border:1px solid #c7d9d7; border-radius:8px; background:#fbfdfc; color:var(--ink); font:500 0.88rem 'Segoe UI', Tahoma, sans-serif; }
+    .builder-select:focus { outline:3px solid #c9e8e5; border-color:var(--teal); }
+    .builder-help { margin:-4px 0 14px; color:var(--muted); font-size:0.76rem; line-height:1.4; }
+    .builder-row { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .builder-row > * { min-width:0; }
+    .builder-row .builder-select { margin-bottom:0; }
+    .builder-value { min-height:42px; resize:vertical; }
+    .builder-action { margin-top:14px; }
+    .builder-section .section-heading { margin-bottom:10px; }
+    .builder-section .section-heading h2 { font-size:1.1rem; }
+    .builder-section .section-heading p { font-size:0.78rem; }
+    .builder-section .panel { padding:12px; }
+    .builder-section .panel-header { margin-bottom:7px; }
+    .builder-section .panel-header label { font-size:0.8rem; }
+    .builder-section .panel-action { min-height:24px; padding:3px 8px; font-size:0.66rem; }
+    .builder-section .builder-label { margin-bottom:4px; font-size:0.7rem; }
+    .builder-section .builder-select { margin-bottom:9px; padding:7px 10px; font-size:0.8rem; }
+    .builder-section .builder-help { margin:-2px 0 9px; font-size:0.7rem; }
+    .builder-section .form-stack input { padding:7px 10px; margin-bottom:8px; font-size:0.8rem; }
+    .builder-section .builder-value { min-height:34px; }
+    .builder-section .builder-row { gap:7px; }
+    .builder-section .builder-action { min-height:32px; margin-top:9px; padding:7px 14px; font-size:0.8rem; }
+    .builder-section .output { min-height:280px; padding:11px; font-size:0.8rem; }
+    @media (max-width:700px) {
+      .builder-row { grid-template-columns:1fr; gap:0; }
+    }
+    .error { color:#ff9e9e; font-weight:bold; }
+    @keyframes appear { from { opacity:0; transform:translateY(5px); } to { opacity:1; transform:none; } }
+    @media (max-width:700px) {
+      main { padding:168px 14px 36px; }
+      nav button { font-size:0.7rem; padding:4px 5px; }
+      .tool-layout { grid-template-columns:1fr; }
+      textarea, .output { min-height:280px; }
+    }
+    @media (min-width:701px) and (max-width:900px) {
+      main { padding-left:16px; padding-right:16px; }
+      .tool-layout { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header id="header">
+    <h1>JSON Formatter &amp; Validator</h1>
+    <p>Formatter • Builder • Validator</p>
+  </header>
+
+  <nav>
+    <button class="active" data-tab="formatter">JSON Formatter</button>
+    <button data-tab="creator">JSON Builder</button>
+    <button data-tab="validator">JSON Validator</button>
+  </nav>
+
+  <main>
+    <!-- Formatter -->
+    <section id="formatter">
+      <div class="section-heading">
+        <h2>Format JSON</h2>
+        <p>Paste raw JSON on the left and turn it into clean, readable data.</p>
+      </div>
+      <div class="tool-layout">
+        <div class="panel">
+          <div class="panel-header">
+            <label for="jsonInput">Input</label>
+            <div class="panel-actions">
+              <button class="panel-action" id="selectInputBtn" type="button">Select All</button>
+              <button class="panel-action" id="clearInputBtn" type="button">Clear</button>
+            </div>
+          </div>
+          <textarea id="jsonInput" placeholder="Paste JSON here..."></textarea>
+          <button class="action" id="formatBtn">Format JSON</button>
+        </div>
+        <div class="panel">
+          <div class="panel-header">
+            <label for="output">Formatted output</label>
+            <div class="panel-actions">
+              <button class="panel-action" id="selectOutputBtn" type="button">Select All</button>
+              <button class="panel-action" id="clearOutputBtn" type="button">Clear</button>
+              <button class="panel-action" id="copyBtn" type="button">Copy</button>
+              <button class="panel-action" id="saveBtn" type="button">Save</button>
+            </div>
+          </div>
+          <pre class="output" id="output"></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Creator -->
+    <section id="creator" class="builder-section" style="display:none;">
+      <div class="section-heading"><h2>Build JSON</h2><p>Choose a structure, add typed values, and see the JSON update immediately.</p></div>
+      <div class="tool-layout">
+        <div class="panel form-stack">
+          <div class="panel-header">
+            <label for="creatorMode">Builder</label>
+            <div class="panel-actions">
+              <button class="panel-action" id="clearCreatorInputBtn" type="button">Clear</button>
+            </div>
+          </div>
+          <label class="builder-label" for="creatorMode">JSON structure</label>
+          <select class="builder-select" id="creatorMode">
+            <option value="object">Simple Object</option>
+            <option value="array">Array</option>
+            <option value="complex">Complex JSON</option>
+          </select>
+          <p class="builder-help" id="creatorHelp">Add named properties such as name, age, or active.</p>
+          <div id="objectFields">
+            <label class="builder-label" for="keyInput">Property name</label>
+            <input id="keyInput" placeholder="Example: name">
+          </div>
+          <div id="complexFields" style="display:none;">
+            <label class="builder-label" for="pathInput">Property path</label>
+            <input id="pathInput" placeholder="Example: user.address.city">
+          </div>
+          <label class="builder-label" for="valueInput">Value</label>
+          <input class="builder-value" id="valueInput" type="text" placeholder="Example: John">
+          <div class="builder-row">
+            <div>
+              <label class="builder-label" for="valueType">Value type</label>
+              <select class="builder-select" id="valueType">
+                <option value="string">Text</option>
+                <option value="number">Number</option>
+                <option value="boolean">Boolean</option>
+                <option value="null">Null</option>
+              </select>
+            </div>
+            <div id="arrayIndexField" style="display:none;">
+              <label class="builder-label" for="arrayIndexInput">Array index</label>
+              <input id="arrayIndexInput" type="number" min="0" placeholder="Next item">
+            </div>
+          </div>
+          <button class="action builder-action" id="addPairBtn" type="button">Add to JSON</button>
+        </div>
+        <div class="panel">
+          <div class="panel-header">
+            <label for="creatorOutput">Generated output</label>
+            <div class="panel-actions">
+              <button class="panel-action" id="selectCreatorOutputBtn" type="button">Select All</button>
+              <button class="panel-action" id="clearCreatorOutputBtn" type="button">Clear</button>
+              <button class="panel-action" id="copyCreatorOutputBtn" type="button">Copy</button>
+              <button class="panel-action" id="saveCreatorOutputBtn" type="button">Save</button>
+            </div>
+          </div>
+          <pre class="output" id="creatorOutput"></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Validator -->
+    <section id="validator" style="display:none;">
+      <div class="section-heading"><h2>Validate JSON</h2><p>Check whether your JSON is syntactically valid.</p></div>
+      <div class="tool-layout">
+        <div class="panel form-stack">
+          <div class="panel-header">
+            <label for="validateInput">JSON input</label>
+            <div class="panel-actions">
+              <button class="panel-action" id="selectValidateInputBtn" type="button">Select All</button>
+              <button class="panel-action" id="clearValidateInputBtn" type="button">Clear</button>
+            </div>
+          </div>
+          <textarea id="validateInput" placeholder="Paste JSON to validate..."></textarea>
+          <button class="action" id="validateBtn">Validate JSON</button>
+        </div>
+        <div class="panel">
+          <div class="panel-header">
+            <label for="validateOutput">Validation result</label>
+            <div class="panel-actions">
+              <button class="panel-action" id="selectValidateOutputBtn" type="button">Select All</button>
+              <button class="panel-action" id="clearValidateOutputBtn" type="button">Clear</button>
+              <button class="panel-action" id="copyValidateOutputBtn" type="button">Copy</button>
+              <button class="panel-action" id="saveValidateOutputBtn" type="button">Save</button>
+            </div>
+          </div>
+          <pre class="output" id="validateOutput"></pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>JSON Tools &middot; Format, build, validate</footer>
+  <div class="toast" id="toast" role="status" aria-live="polite">Copied to clipboard</div>
+
+  <script>
+    // Shrink header on scroll
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header');
+      const isScrolled = window.scrollY > 50;
+      header.classList.toggle('shrink', isScrolled);
+      document.body.classList.toggle('compact-header', isScrolled);
+    });
+
+    // Tab switching
+    const buttons = document.querySelectorAll('nav button');
+    const sections = document.querySelectorAll('main section');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tabId = btn.dataset.tab;
+        sections.forEach(section => section.style.display = 'none');
+        document.getElementById(tabId).style.display = 'block';
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+
+    // Formatter
+    document.getElementById('formatBtn').addEventListener('click', () => {
+      const input = document.getElementById('jsonInput').value;
+      const output = document.getElementById('output');
+      try {
+        const obj = JSON.parse(input);
+        output.textContent = JSON.stringify(obj, null, 2);
+        output.classList.remove('error');
+      } catch (e) {
+        output.textContent = 'Invalid JSON: ' + e.message;
+        output.classList.add('error');
+      }
+    });
+
+    const selectText = element => {
+      const selection = window.getSelection();
+      const range = document.createRange();
+      range.selectNodeContents(element);
+      selection.removeAllRanges();
+      selection.addRange(range);
+    };
+    let toastTimer;
+    const showToast = (message, anchor) => {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      if (anchor) {
+        const bounds = anchor.getBoundingClientRect();
+        toast.style.left = `${Math.max(12, Math.min(window.innerWidth - 12, bounds.left + bounds.width / 2))}px`;
+        const toastTop = bounds.top >= 38 ? bounds.top - 34 : bounds.bottom + 8;
+        toast.style.top = `${toastTop}px`;
+        toast.style.bottom = 'auto';
+      }
+      toast.classList.add('visible');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('visible'), 1800);
+    };
+    const copyText = async text => {
+      if (!text) return false;
+      try {
+        if (navigator.clipboard?.writeText) {
+          await navigator.clipboard.writeText(text);
+          return true;
+        }
+      } catch (error) {
+        // Use the local fallback below when clipboard access is restricted.
+      }
+      const helper = document.createElement('textarea');
+      helper.value = text;
+      helper.style.position = 'fixed';
+      helper.style.opacity = '0';
+      document.body.appendChild(helper);
+      helper.focus();
+      helper.select();
+      const copied = document.execCommand('copy');
+      helper.remove();
+      return copied;
+    };
+
+    // Formatter actions
+    document.getElementById('clearInputBtn').addEventListener('click', () => {
+      document.getElementById('jsonInput').value = '';
+    });
+    document.getElementById('clearOutputBtn').addEventListener('click', () => {
+      const output = document.getElementById('output');
+      output.textContent = '';
+      output.classList.remove('error');
+    });
+    document.getElementById('selectInputBtn').addEventListener('click', () => {
+      const input = document.getElementById('jsonInput');
+      input.focus();
+      input.select();
+    });
+    document.getElementById('selectOutputBtn').addEventListener('click', () => {
+      selectText(document.getElementById('output'));
+    });
+    document.getElementById('copyBtn').addEventListener('click', async event => {
+      const copyButton = event.currentTarget;
+      const output = document.getElementById('output').textContent;
+      if (!output) {
+        showToast('Nothing to copy', copyButton);
+        return;
+      }
+      if (await copyText(output)) showToast('Copied to clipboard', copyButton);
+      else showToast('Copy unavailable', copyButton);
+    });
+    document.getElementById('saveBtn').addEventListener('click', () => {
+      const output = document.getElementById('output').textContent;
+      if (!output) return;
+      const file = new Blob([output], { type: 'application/json' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(file);
+      link.download = 'formatted.json';
+      link.click();
+      URL.revokeObjectURL(link.href);
+    });
+
+    // Creator actions
+    document.getElementById('selectCreatorOutputBtn').addEventListener('click', () => {
+      selectText(document.getElementById('creatorOutput'));
+    });
+    document.getElementById('clearCreatorOutputBtn').addEventListener('click', () => {
+      creatorData = creatorMode.value === 'array' ? [] : {};
+      clearCreatorFields();
+      renderCreatorOutput();
+    });
+    document.getElementById('copyCreatorOutputBtn').addEventListener('click', async event => {
+      const copyButton = event.currentTarget;
+      const output = document.getElementById('creatorOutput').textContent;
+      if (!output) {
+        showToast('Nothing to copy', copyButton);
+        return;
+      }
+      if (await copyText(output)) showToast('Copied to clipboard', copyButton);
+      else showToast('Copy unavailable', copyButton);
+    });
+    document.getElementById('saveCreatorOutputBtn').addEventListener('click', () => {
+      const output = document.getElementById('creatorOutput').textContent;
+      if (!output) return;
+      const file = new Blob([output], { type: 'application/json' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(file);
+      link.download = 'built.json';
+      link.click();
+      URL.revokeObjectURL(link.href);
+    });
+
+    // Validator actions
+    document.getElementById('selectValidateInputBtn').addEventListener('click', () => {
+      const input = document.getElementById('validateInput');
+      input.focus();
+      input.select();
+    });
+    document.getElementById('clearValidateInputBtn').addEventListener('click', () => {
+      document.getElementById('validateInput').value = '';
+    });
+    document.getElementById('selectValidateOutputBtn').addEventListener('click', () => {
+      selectText(document.getElementById('validateOutput'));
+    });
+    document.getElementById('clearValidateOutputBtn').addEventListener('click', () => {
+      const output = document.getElementById('validateOutput');
+      output.textContent = '';
+      output.classList.remove('error');
+    });
+    document.getElementById('copyValidateOutputBtn').addEventListener('click', async event => {
+      const copyButton = event.currentTarget;
+      const output = document.getElementById('validateOutput').textContent;
+      if (!output) {
+        showToast('Nothing to copy', copyButton);
+        return;
+      }
+      if (await copyText(output)) showToast('Copied to clipboard', copyButton);
+      else showToast('Copy unavailable', copyButton);
+    });
+    document.getElementById('saveValidateOutputBtn').addEventListener('click', () => {
+      const output = document.getElementById('validateOutput').textContent;
+      if (!output) return;
+      const file = new Blob([output], { type: 'text/plain' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(file);
+      link.download = 'validation-result.txt';
+      link.click();
+      URL.revokeObjectURL(link.href);
+    });
+
+    // Creator
+    let creatorData = {};
+    const creatorMode = document.getElementById('creatorMode');
+    const creatorHelp = document.getElementById('creatorHelp');
+    const renderCreatorOutput = () => {
+      document.getElementById('creatorOutput').textContent = JSON.stringify(creatorData, null, 2);
+    };
+    const parseCreatorValue = () => {
+      const value = document.getElementById('valueInput').value.trim();
+      const type = document.getElementById('valueType').value;
+      if (type === 'string') return value;
+      if (type === 'number') {
+        const number = Number(value);
+        if (value === '' || Number.isNaN(number)) throw new Error('Enter a valid number.');
+        return number;
+      }
+      if (type === 'boolean') {
+        if (value.toLowerCase() !== 'true' && value.toLowerCase() !== 'false') throw new Error('Use true or false.');
+        return value.toLowerCase() === 'true';
+      }
+      if (type === 'null') return null;
+    };
+    const pathParts = path => path.match(/[^.[\]]+|\[(\d+)\]/g)?.map(part => {
+      const value = part.startsWith('[') ? part.slice(1, -1) : part;
+      return /^\d+$/.test(value) ? Number(value) : value;
+    }) || [];
+    const setComplexValue = (path, value) => {
+      const parts = pathParts(path);
+      if (!parts.length) throw new Error('Enter a property path.');
+      let target = creatorData;
+      parts.forEach((part, index) => {
+        const isLast = index === parts.length - 1;
+        if (isLast) {
+          target[part] = value;
+          return;
+        }
+        const nextPart = parts[index + 1];
+        if (target[part] === undefined) target[part] = typeof nextPart === 'number' ? [] : {};
+        target = target[part];
+      });
+    };
+    const clearCreatorFields = () => {
+      document.getElementById('keyInput').value = '';
+      document.getElementById('pathInput').value = '';
+      document.getElementById('valueInput').value = '';
+      document.getElementById('arrayIndexInput').value = '';
+    };
+    const updateCreatorMode = () => {
+      const mode = creatorMode.value;
+      document.getElementById('objectFields').style.display = mode === 'object' ? 'block' : 'none';
+      document.getElementById('complexFields').style.display = mode === 'complex' ? 'block' : 'none';
+      document.getElementById('arrayIndexField').style.display = mode === 'array' ? 'block' : 'none';
+      creatorHelp.textContent = mode === 'object'
+        ? 'Add named properties such as name, age, or active.'
+        : mode === 'array'
+          ? 'Add items in order. Choose an index only when you need to replace a specific item.'
+          : 'Use paths such as user.address.city or items[0].name to build nested JSON.';
+      creatorData = mode === 'array' ? [] : {};
+      clearCreatorFields();
+      renderCreatorOutput();
+    };
+    document.getElementById('clearCreatorInputBtn').addEventListener('click', () => {
+      creatorData = creatorMode.value === 'array' ? [] : {};
+      clearCreatorFields();
+      renderCreatorOutput();
+    });
+    creatorMode.addEventListener('change', updateCreatorMode);
+    document.getElementById('addPairBtn').addEventListener('click', () => {
+      try {
+        const value = parseCreatorValue();
+        const mode = creatorMode.value;
+        if (mode === 'object') {
+          const key = document.getElementById('keyInput').value.trim();
+          if (!key) throw new Error('Enter a property name.');
+          creatorData[key] = value;
+        } else if (mode === 'array') {
+          const indexValue = document.getElementById('arrayIndexInput').value;
+          if (indexValue === '') creatorData.push(value);
+          else creatorData[Number(indexValue)] = value;
+        } else {
+          setComplexValue(document.getElementById('pathInput').value.trim(), value);
+        }
+        clearCreatorFields();
+        renderCreatorOutput();
+      } catch (error) {
+        alert(error.message);
+      }
+    });
+    updateCreatorMode();
+
+    // Validator
+    document.getElementById('validateBtn').addEventListener('click', () => {
+      const input = document.getElementById('validateInput').value;
+      const output = document.getElementById('validateOutput');
+      try {
+        JSON.parse(input);
+        output.textContent = "Valid JSON ✅";
+        output.classList.remove('error');
+      } catch (e) {
+        output.textContent = "Invalid JSON ❌: " + e.message;
+        output.classList.add('error');
+      }
+    });
+  </script>
+</body>
+</html>
